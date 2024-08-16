@@ -4,7 +4,6 @@ import {
   ButtonProps as RACButtonProps,
 } from "react-aria-components";
 import { tv } from "tailwind-variants";
-import { PlusCircle } from "lucide-react";
 
 export interface ButtonProps extends RACButtonProps {
   variant?: "primary" | "secondary" | "destructive";
@@ -14,7 +13,8 @@ const button = tv({
   base: [
     "relative isolate inline-flex items-center justify-center gap-x-2 rounded-lg border text-base/6 font-semibold",
     "px-[calc(theme(spacing[3.5])-1px)] py-[calc(theme(spacing[2.5])-1px)] sm:px-[calc(theme(spacing.3)-1px)] sm:py-[calc(theme(spacing[1.5])-1px)] sm:text-sm/6",
-    "focus:outline-none focus:outline-2 focus:outline-offset-2 focus:outline-blue-500",
+    "data-[focused]:outline-none data-[focus-visible]:outline-none data-[focus-visible]:outline-2 data-[focus-visible]:outline-offset-2 data-[focus-visible]:outline-blue-500",
+    "focus:outline-none",
     "disabled:opacity-50",
     "[&>svg]:-mx-0.5 [&>svg]:my-0.5 [&>svg]:h-5 [&>svg]:w-5 [&>svg]:shrink-0 sm:[&>svg]:my-1 sm:[&>svg]:h-4 sm:[&>svg]:w-4",
     "before:absolute before:inset-0 before:-z-10 before:rounded-[calc(theme(borderRadius.lg)-1px)]",
@@ -22,8 +22,7 @@ const button = tv({
     "after:absolute after:inset-0 after:-z-10 after:rounded-[calc(theme(borderRadius.lg)-1px)]",
     "after:shadow-[inset_0_1px_0_0_rgba(255,255,255,0.15)]",
     "disabled:before:shadow-none disabled:after:shadow-none",
-    // Add global transition
-    "transition-all duration-200 ease-in-out",
+    "transition-colors duration-200 ease-in-out",
     "[&>svg]:transition-colors [&>svg]:duration-200 [&>svg]:ease-in-out",
     "before:transition-colors before:duration-200 before:ease-in-out",
     "after:transition-colors after:duration-200 after:ease-in-out",
@@ -76,7 +75,6 @@ export function Button({ children, ...props }: ButtonProps) {
         button({ ...renderProps, variant: props.variant, className })
       )}
     >
-      <PlusCircle aria-hidden="true" />
       <span
         className="absolute left-1/2 top-1/2 h-[max(100%,2.75rem)] w-[max(100%,2.75rem)] -translate-x-1/2 -translate-y-1/2 [@media(pointer:fine)]:hidden"
         aria-hidden="true"

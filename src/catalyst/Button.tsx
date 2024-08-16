@@ -7,7 +7,7 @@ import { tv } from "tailwind-variants";
 import { focusStyles } from "./utils";
 
 export interface ButtonProps extends RACButtonProps {
-  variant?: "primary" | "secondary" | "destructive";
+  variant?: "primary" | "secondary" | "destructive" | "icon";
 }
 
 const button = tv({

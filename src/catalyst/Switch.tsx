@@ -4,36 +4,35 @@ import {
   SwitchProps as AriaSwitchProps,
 } from "react-aria-components";
 import { tv } from "tailwind-variants";
-import { composeTailwindRenderProps, focusRing } from "./utils";
+import { composeTailwindRenderProps } from "./utils";
 
 export interface SwitchProps extends Omit<AriaSwitchProps, "children"> {
   children?: React.ReactNode;
 }
 
-const track = tv({
-  extend: focusRing,
-  base: "flex h-4 w-7 px-px items-center shrink-0 cursor-default rounded-full transition duration-200 ease-in-out shadow-inner border border-transparent",
+const switchStyles = tv({
+  base: "group relative isolate inline-flex h-6 w-10 cursor-default rounded-full p-[3px] sm:h-5 sm:w-8 transition ease-in-out duration-200 forced-colors:outline focus:outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500",
   variants: {
     isSelected: {
       false:
-        "bg-gray-400 dark:bg-zinc-400 group-pressed:bg-gray-500 dark:group-pressed:bg-zinc-300",
-      true: "bg-gray-700 dark:bg-zinc-300 forced-colors:!bg-[Highlight] group-pressed:bg-gray-800 dark:group-pressed:bg-zinc-200",
+        "bg-zinc-200 ring-1 ring-inset ring-black/5 dark:bg-white/5 dark:ring-white/15 hover:ring-black/15 dark:hover:ring-white/25",
+      true: "bg-zinc-600 ring-zinc-700/90 dark:bg-white/25 dark:ring-transparent hover:ring-zinc-700/90 dark:hover:ring-transparent",
     },
     isDisabled: {
-      true: "bg-gray-200 dark:bg-zinc-700 forced-colors:group-selected:!bg-[GrayText] forced-colors:border-[GrayText]",
+      true: "bg-zinc-200 opacity-50 dark:bg-white/15 cursor-not-allowed",
     },
   },
 });
 
-const handle = tv({
-  base: "h-3 w-3 transform rounded-full bg-white dark:bg-zinc-900 outline outline-1 -outline-offset-1 outline-transparent shadow transition duration-200 ease-in-out",
+const handleStyles = tv({
+  base: "pointer-events-none relative inline-block size-[1.125rem] rounded-full sm:size-3.5 translate-x-0 transition duration-200 ease-in-out border border-transparent bg-white shadow ring-1 ring-black/5",
   variants: {
     isSelected: {
-      false: "translate-x-0",
-      true: "translate-x-[100%]",
+      false: "",
+      true: "translate-x-4 sm:translate-x-3 shadow-zinc-900/20 ring-zinc-700/90",
     },
     isDisabled: {
-      true: "forced-colors:outline-[GrayText]",
+      true: "opacity-50",
     },
   },
 });
@@ -44,16 +43,15 @@ export function Switch({ children, ...props }: SwitchProps) {
       {...props}
       className={composeTailwindRenderProps(
         props.className,
-        "group flex gap-2 items-center text-gray-800 disabled:text-gray-300 dark:text-zinc-200 dark:disabled:text-zinc-600 forced-colors:disabled:text-[GrayText] text-sm transition"
+        "group inline-flex items-center gap-2.5 text-gray-800 disabled:text-gray-300 dark:text-zinc-200 dark:disabled:text-zinc-600 transition"
       )}
     >
-      {(renderProps) => (
+      {({ isSelected, isDisabled }) => (
         <>
-          <div className={track(renderProps)}>
-            <span className={handle(renderProps)} />
+          <div className={switchStyles({ isSelected, isDisabled })}>
+            <span className={handleStyles({ isSelected, isDisabled })} />
           </div>
-          {renderProps.isHovered && "Hovered"}
-          {children}
+          <span>{children}</span>
         </>
       )}
     </AriaSwitch>

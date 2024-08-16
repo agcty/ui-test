@@ -113,7 +113,9 @@ export function Checkbox(props: CheckboxProps) {
               />
             </svg>
           </span>
-          <span className="ml-2.5">{props.children}</span>
+          <span className="ml-2.5">
+            <>{props.children}</>
+          </span>
         </>
       )}
     </AriaCheckbox>

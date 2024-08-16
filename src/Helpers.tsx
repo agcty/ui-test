@@ -57,7 +57,7 @@ function StringableCard({
 
   return (
     <div
-      className={clsx("bg-white p-4 rounded shadow relative", className)}
+      className={clsx("bg-white px-4 py-8 rounded shadow relative", className)}
       {...props}
     >
       <button

@@ -25,11 +25,11 @@ export function NumberField(
       <FieldGroup>
         {renderProps => (<>
           <Input />
-          <div className={fieldBorderStyles({...renderProps, class: 'flex flex-col border-s-2'})}>
+          <div className={fieldBorderStyles({...renderProps, className: 'flex flex-col border-s-2'})}>
             <StepperButton slot="increment">
               <ChevronUp aria-hidden className="w-4 h-4" />
             </StepperButton>
-            <div className={fieldBorderStyles({...renderProps, class: 'border-b-2'})} />
+            <div className={fieldBorderStyles({...renderProps, className: 'border-b-2'})} />
             <StepperButton slot="decrement">
               <ChevronDown aria-hidden className="w-4 h-4" />
             </StepperButton>

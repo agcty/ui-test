@@ -7,7 +7,10 @@ import { Switch } from "./catalyst/Switch";
 import { Modal } from "./catalyst/Modal";
 import { ComboBoxItem, ComboBox } from "./catalyst/ComboBox";
 import StringableCard, { NamespaceProvider } from "./Helpers";
-import { Label } from "./catalyst/Field";
+import { FieldError, FieldGroup, Input, Label } from "./catalyst/Field";
+import { DropdownItem, ListBox, ListBoxItem } from "./catalyst/ListBox";
+import { TextField } from "./catalyst/TextField";
+import { NumberField } from "./catalyst/NumberField";
 
 export function Catalyst() {
   const [showModal, setShowModal] = useState(false);
@@ -18,7 +21,7 @@ export function Catalyst() {
         <section className="grid gap-4 sm:grid-cols-2 xl:grid-cols-[repeat(15,_minmax(0,_1fr))]">
           <StringableCard className="xl:col-span-5">
             <Button onPress={() => setShowModal(false)} className="">
-              Test
+              Open Dialog
             </Button>
             <Button
               onPress={() => setShowModal(false)}
@@ -66,9 +69,20 @@ export function Catalyst() {
             </ComboBox>
           </StringableCard>
 
-          <StringableCard className="sm:col-span-2 md:col-span-1 xl:col-span-6" />
+          <StringableCard className="sm:col-span-2 md:col-span-1 xl:col-span-6">
+            <ListBox>
+              <ListBoxItem>Test</ListBoxItem>
+              <ListBoxItem>Test</ListBoxItem>
+              <ListBoxItem>Test</ListBoxItem>
+              <ListBoxItem>Test</ListBoxItem>
+            </ListBox>
+          </StringableCard>
 
-          <StringableCard className="sm:col-span-2 xl:col-span-9" />
+          <StringableCard className="sm:col-span-2 xl:col-span-9">
+            <TextField label="test" description="Test me" type="search" />
+            <NumberField label="test" description="Test me" />
+          </StringableCard>
+
           <StringableCard className="sm:col-span-2 md:col-span-1 xl:col-span-6" />
         </section>
       </div>

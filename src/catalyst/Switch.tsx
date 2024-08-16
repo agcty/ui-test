@@ -10,8 +10,11 @@ export interface SwitchProps extends Omit<AriaSwitchProps, "children"> {
   children?: React.ReactNode;
 }
 
+const focus =
+  "group-data-[focus-visible]:outline group-data-[focus-visible]:outline-2 group-data-[focus-visible]:outline-offset-2 group-data-[focus-visible]:outline-blue-500";
+
 const switchStyles = tv({
-  base: "group relative isolate inline-flex h-6 w-10 cursor-default rounded-full p-[3px] sm:h-5 sm:w-8 transition ease-in-out duration-200 forced-colors:outline focus:outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500",
+  base: `relative isolate inline-flex h-6 w-10 cursor-default rounded-full p-[3px] sm:h-5 sm:w-8 transition ease-in-out duration-200 ${focus}`,
   variants: {
     isSelected: {
       false:
@@ -51,7 +54,7 @@ export function Switch({ children, ...props }: SwitchProps) {
           <div className={switchStyles({ isSelected, isDisabled })}>
             <span className={handleStyles({ isSelected, isDisabled })} />
           </div>
-          <span>{children}</span>
+          {children}
         </>
       )}
     </AriaSwitch>

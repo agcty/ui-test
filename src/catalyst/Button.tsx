@@ -22,6 +22,11 @@ const button = tv({
     "after:absolute after:inset-0 after:-z-10 after:rounded-[calc(theme(borderRadius.lg)-1px)]",
     "after:shadow-[inset_0_1px_0_0_rgba(255,255,255,0.15)]",
     "disabled:before:shadow-none disabled:after:shadow-none",
+    // Add global transition
+    "transition-all duration-200 ease-in-out",
+    "[&>svg]:transition-colors [&>svg]:duration-200 [&>svg]:ease-in-out",
+    "before:transition-colors before:duration-200 before:ease-in-out",
+    "after:transition-colors after:duration-200 after:ease-in-out",
   ],
   variants: {
     variant: {
@@ -76,7 +81,7 @@ export function Button({ children, ...props }: ButtonProps) {
         className="absolute left-1/2 top-1/2 h-[max(100%,2.75rem)] w-[max(100%,2.75rem)] -translate-x-1/2 -translate-y-1/2 [@media(pointer:fine)]:hidden"
         aria-hidden="true"
       />
-      {children}
+      <>{children}</>
     </RACButton>
   );
 }

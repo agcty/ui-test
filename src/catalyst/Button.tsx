@@ -4,6 +4,7 @@ import {
   ButtonProps as RACButtonProps,
 } from "react-aria-components";
 import { tv } from "tailwind-variants";
+import { focusStyles } from "./utils";
 
 export interface ButtonProps extends RACButtonProps {
   variant?: "primary" | "secondary" | "destructive";
@@ -13,8 +14,7 @@ const button = tv({
   base: [
     "relative isolate inline-flex items-center justify-center gap-x-2 rounded-lg border text-base/6 font-semibold",
     "px-[calc(theme(spacing[3.5])-1px)] py-[calc(theme(spacing[2.5])-1px)] sm:px-[calc(theme(spacing.3)-1px)] sm:py-[calc(theme(spacing[1.5])-1px)] sm:text-sm/6",
-    "data-[focused]:outline-none data-[focus-visible]:outline-none data-[focus-visible]:outline-2 data-[focus-visible]:outline-offset-2 data-[focus-visible]:outline-blue-500",
-    "focus:outline-none",
+    focusStyles,
     "disabled:opacity-50",
     "[&>svg]:-mx-0.5 [&>svg]:my-0.5 [&>svg]:h-5 [&>svg]:w-5 [&>svg]:shrink-0 sm:[&>svg]:my-1 sm:[&>svg]:h-4 sm:[&>svg]:w-4",
     "before:absolute before:inset-0 before:-z-10 before:rounded-[calc(theme(borderRadius.lg)-1px)]",

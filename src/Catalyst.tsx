@@ -17,7 +17,23 @@ export function Catalyst() {
       <div className="max-w-7xl mx-auto">
         <section className="grid gap-4 sm:grid-cols-2 xl:grid-cols-[repeat(15,_minmax(0,_1fr))]">
           <StringableCard className="xl:col-span-5">
-            <Button onPress={() => setShowModal(true)}>Test</Button>
+            <Button onPress={() => setShowModal(false)} className="">
+              Test
+            </Button>
+            <Button
+              onPress={() => setShowModal(false)}
+              variant="secondary"
+              className="ml-2"
+            >
+              Test
+            </Button>
+            <Button
+              onPress={() => setShowModal(false)}
+              variant="destructive"
+              className="ml-2"
+            >
+              Test
+            </Button>
             <Modal isOpen={showModal} onOpenChange={() => setShowModal(false)}>
               <AlertDialog
                 onAction={() => {}}
@@ -39,7 +55,7 @@ export function Catalyst() {
           </StringableCard>
 
           <StringableCard className="sm:col-span-2 md:col-span-1 xl:col-span-5">
-            <Switch />
+            <Switch>Test</Switch>
           </StringableCard>
 
           <StringableCard className="sm:col-span-2 xl:col-span-9">

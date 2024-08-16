@@ -9,7 +9,9 @@ import {
 } from "react-aria-components";
 import { tv } from "tailwind-variants";
 import { Description, FieldError, Label } from "./Field";
-import { composeTailwindRenderProps, focusRing } from "./utils";
+import {
+  composeTailwindRenderProps, groupFocusStyles
+} from "./utils";
 
 export interface CheckboxGroupProps
   extends Omit<AriaCheckboxGroupProps, "children"> {
@@ -37,7 +39,7 @@ export function CheckboxGroup(props: CheckboxGroupProps) {
 }
 
 const checkboxStyles = tv({
-  base: "group inline-flex items-center focus:outline-none",
+  base: ["group inline-flex items-center focus:outline-none"  ],
   variants: {
     isDisabled: {
       false: "text-gray-800 dark:text-zinc-200",
@@ -47,8 +49,10 @@ const checkboxStyles = tv({
 });
 
 const boxStyles = tv({
-  extend: focusRing,
-  base: "relative isolate flex w-[1.125rem] h-[1.125rem] sm:w-4 sm:h-4 items-center justify-center rounded-[0.3125rem] border transition",
+  base: [
+    "relative isolate flex w-[1.125rem] h-[1.125rem] sm:w-4 sm:h-4 items-center justify-center rounded-[0.3125rem] border transition",
+    groupFocusStyles,
+  ],
   variants: {
     isSelected: {
       false:

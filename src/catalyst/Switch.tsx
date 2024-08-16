@@ -4,17 +4,17 @@ import {
   SwitchProps as AriaSwitchProps,
 } from "react-aria-components";
 import { tv } from "tailwind-variants";
-import { composeTailwindRenderProps } from "./utils";
+import { composeTailwindRenderProps, groupFocusStyles } from "./utils";
 
 export interface SwitchProps extends Omit<AriaSwitchProps, "children"> {
   children?: React.ReactNode;
 }
 
-const focus =
-  "group-data-[focus-visible]:outline group-data-[focus-visible]:outline-2 group-data-[focus-visible]:outline-offset-2 group-data-[focus-visible]:outline-blue-500";
-
 const switchStyles = tv({
-  base: `relative isolate inline-flex h-6 w-10 cursor-default rounded-full p-[3px] sm:h-5 sm:w-8 transition ease-in-out duration-200 ${focus}`,
+  base: [
+    "relative isolate inline-flex h-6 w-10 cursor-default rounded-full p-[3px] sm:h-5 sm:w-8 transition ease-in-out duration-200",
+    groupFocusStyles,
+  ],
   variants: {
     isSelected: {
       false:
